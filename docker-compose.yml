@@ -1,0 +1,8 @@
+nginx:
+    container_name: WEBSITE_NAME
+    image: nginx
+    ports:
+      - 8081:80
+    volumes:
+      - $PWD/dist:/usr/share/nginx/html
+    restart: always
