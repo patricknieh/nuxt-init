@@ -25,14 +25,13 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: false,
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/pwa'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/pwa'],// @nuxtjs/pwa -> DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
   plugins: [
     '~/plugins/components',
     '~/plugins/filters',
     '~/plugins/directives',
     '~/plugins/axios',
-    '~/plugins/element-ui',
-    '~/plugins/mint-ui',
+    '~/plugins/ant-design-vue',
   ],
   css: [
     '~/scss/main.scss'
