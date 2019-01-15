@@ -9,15 +9,22 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'author', content: 'paddy' },
-      { hid: 'keywords', name: 'keywords', content: 'paddy,nuxt' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { name: 'keywords', content: 'paddy,nuxt' },
+      { name: 'description', content: 'Nuxt.js project' },
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', href: '/icon.png' },
+      { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css' },
+      { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css' },
     ],
     script: [
-      { src: '//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'},
+      // { src: '//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'},
+      { src: '//g.alicdn.com/sj/lib/zepto/zepto.min.js'},
+      { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'},
+      { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js'},
       { src: '/js/cnzz.js'},
     ]
   },
@@ -68,12 +75,7 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    },
-    postcss: [
-      require('postcss-px2rem')({
-        remUnit: 15 // 转换基本单位
-      })
-    ],
+    }
   }
 }
 
