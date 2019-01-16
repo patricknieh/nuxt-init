@@ -2,9 +2,6 @@
   <section class="container">
     <div>
       <app-logo/>
-      <h1 class="title">
-        nuxt-init
-      </h1>
       <h2 class="subtitle">
         PWA Vue.js Application
       </h2>
@@ -22,16 +19,6 @@
           target="_blank"
           class="button--grey">GitHub</a>
       </div>
-    </div>
-    <div>
-      <img src="/img/icon.png">
-    </div>
-    <div class="logo"></div>
-    <div>
-      <a-button type="primary">Primary</a-button>
-      <a-button>Default</a-button>
-      <a-button type="dashed">Dashed</a-button>
-      <a-button type="danger">Danger</a-button>
     </div>
   </section>
 </template>
