@@ -42,3 +42,20 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+.network {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.network .circle {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: green;
+  padding: .1rem .5rem;
+  border-radius: 1rem;
+}
+
+.network.offline .circle {
+  background: red;
+}

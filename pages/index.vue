@@ -15,9 +15,8 @@
           target="_blank"
           class="button--green">Documentation</a>
         <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
+          href="/mobile"
+          class="button--grey">Mobile</a>
       </div>
     </div>
   </section>
@@ -28,9 +27,10 @@
 
   export default {
     mixins: [scrollMoreData],
+
     data () {
       return {
-        online: true
+        online: true,
       }
     },
     mounted () {

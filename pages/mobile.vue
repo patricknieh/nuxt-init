@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <header class="bar bar-nav">
-      <a class="button button-link button-nav pull-left" href="/demos/card" data-transition='slide-out'>
+      <a class="button button-link button-nav pull-left" href="/" data-transition='slide-out'>
         <span class="icon icon-left"></span>
         返回
       </a>
@@ -27,13 +27,30 @@
     </nav>
     <div class="content">
       <!-- 这里是页面内容区 -->
+      <div :class="['network',server ? 'online' : 'offline']">
+        <div class="circle"></div>
+        {{ server ? 'server' : 'client' }}
+      </div>
+      <div><a-button @click="refresh">刷新</a-button></div>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "mobile"
+    name: "mobile",
+    methods: {
+      refresh() {
+        location.reload()
+      }
+    },
+    asyncData(context) {
+      console.log(process.server)
+      const server = process.server ? process.server : false
+      return {
+        server
+      }
+    },
   }
 </script>
 

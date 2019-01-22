@@ -5,20 +5,14 @@
 ## Build Setup
 
 ``` bash
-# install dependencies
-$ npm install # Or yarn install
+# 开发
+$ yarn dev
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# 静态部署
+$ yarn build
+$ pm2 start yarn start --name PROJECT_NAME
 
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-
-# 部署
+# 静态部署
 $ yarn generate
 $ docker-compose up -d
 ```
