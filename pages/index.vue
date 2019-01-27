@@ -15,7 +15,7 @@
           target="_blank"
           class="button--green">Documentation</a>
         <a
-          href="/mobile"
+          href="/mobile/home"
           class="button--grey">Mobile</a>
       </div>
     </div>

@@ -26,34 +26,16 @@
       </a>
     </nav>
     <div class="content">
-      <!-- 这里是页面内容区 -->
-      <div :class="['network',server ? 'online' : 'offline']">
-        <div class="circle"></div>
-        {{ server ? 'server' : 'client' }}
-      </div>
-      <div><a-button @click="refresh">刷新</a-button></div>
+      <nuxt-child/>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "mobile",
-    methods: {
-      refresh() {
-        location.reload()
-      }
-    },
-    asyncData(context) {
-      console.log(process.server)
-      const server = process.server ? process.server : false
-      return {
-        server
-      }
-    },
+    asyncData() {
+      console.log('server',process.server)
+      console.log('client',process.client)
+    }
   }
 </script>
-
-<style scoped>
-
-</style>
