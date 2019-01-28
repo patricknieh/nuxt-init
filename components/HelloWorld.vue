@@ -5,7 +5,7 @@
     },
     render (h) {
       return h('div',[
-        h('h1',{style: {color: 'red'}}, 'Hello World'),
+        h('h1',{style: {color: 'red'}}, 'Hello JSX'),
         h('h6', this.title)
       ])
     }

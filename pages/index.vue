@@ -14,7 +14,7 @@
           href="/mobile/home"
           class="button--grey">Mobile</a>
       </div>
-      <hello-world>hello world</hello-world>
+      <hello-world/>
     </div>
   </section>
 </template>
