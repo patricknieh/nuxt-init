@@ -11,10 +11,6 @@
       </div>
       <div class="links">
         <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
           href="/mobile/home"
           class="button--grey">Mobile</a>
       </div>
@@ -27,7 +23,9 @@
 
   export default {
     mixins: [scrollMoreData],
+    asyncData({app,route,store,req,res,nuxtState}) {
 
+    },
     data () {
       return {
         online: true,

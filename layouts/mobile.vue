@@ -26,16 +26,7 @@
       </a>
     </nav>
     <div class="content">
-      <nuxt-child/>
+      <nuxt/>
     </div>
   </div>
 </template>
-
-<script>
-  export default {
-    asyncData() {
-      console.log('server',process.server)
-      console.log('client',process.client)
-    }
-  }
-</script>

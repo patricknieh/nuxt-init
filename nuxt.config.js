@@ -1,8 +1,5 @@
 const config = require('./app.config')
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'nuxt-init',
     meta: [
@@ -28,17 +25,19 @@ module.exports = {
       { src: '/js/cnzz.js'},
     ]
   },
-  /*
-  ** Customize the progress bar color
-  */
-  loading: false,
+  // mode: 'spa',
+  // loadingIndicator: {
+  //   name: 'circle',
+  //   color: '#3B8070',
+  //   background: 'white'
+  // },
   modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/pwa'],// @nuxtjs/pwa -> DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
   plugins: [
-    '~/plugins/components',
-    '~/plugins/filters',
-    '~/plugins/directives',
     '~/plugins/axios',
     '~/plugins/ant-design-vue',
+    '~/plugins/components',
+    '~/plugins/filters',
+    '~/plugins/directives'
   ],
   css: [
     '~/scss/main.scss'
@@ -54,18 +53,13 @@ module.exports = {
   proxy:{
     // '/api2': 'http://example.com'
   },
+  watch: ['~/app.config.js'],
   manifest: {
     name: 'nuxt-init',
     description: 'A pwa program',
     theme_color: '#618cb9'
   },
-  /*
-  ** Build configuration
-  */
   build: {
-    /*
-    ** Run ESLint on save
-    */
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
