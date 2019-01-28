@@ -14,21 +14,24 @@
           href="/mobile/home"
           class="button--grey">Mobile</a>
       </div>
+      <hello-world>hello world</hello-world>
     </div>
   </section>
 </template>
 
 <script>
   import {scrollMoreData} from "~/utils/mixins"
+  import HelloWorld from "~/components/HelloWorld"
 
   export default {
     mixins: [scrollMoreData],
+    components: {HelloWorld},
     asyncData({app,route,store,req,res,nuxtState}) {
 
     },
     data () {
       return {
-        online: true,
+        online: true
       }
     },
     mounted () {
