@@ -25,7 +25,6 @@
 
   export default {
     mixins: [scrollMoreData],
-    components: {HelloWorld},
     asyncData({app,route,store,req,res,nuxtState}) {
 
     },
