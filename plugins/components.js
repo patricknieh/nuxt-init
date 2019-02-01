@@ -1,9 +1,7 @@
 import Vue from 'vue'
-import CHeader from '~/components/c-header'
-import CFooter from '~/components/c-footer'
-import AppLogo from '~/components/AppLogo'
-import HelloWorld from '~/components/HelloWorld'
+import SvgIcon from '~/components/svg-icon'
+import HiJsx from '~/components/hi-jsx'
 
-const components = { CHeader, CFooter, AppLogo, HelloWorld }
+const components = { SvgIcon, HiJsx }
 
 Object.keys(components).forEach(key => {Vue.component(key, components[key])})

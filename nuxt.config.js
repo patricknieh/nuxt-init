@@ -1,4 +1,6 @@
 const config = require('./app.config')
+const { resolve } = require('path')
+
 module.exports = {
   head: {
     title: 'nuxt-init',
@@ -15,14 +17,14 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', href: '/icon.png' },
       { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css' },
-      { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css' },
     ],
     script: [
       // { src: '//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'},
-      { src: '//g.alicdn.com/sj/lib/zepto/zepto.min.js'},
-      { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'},
-      { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js'},
-      { src: '/js/cnzz.js'},
+      // { src: '//g.alicdn.com/sj/lib/zepto/zepto.min.js'},
+      // { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'},
+      { src: '/js/snap.svg-min.js'},
+      { src: '/js/gt.js'},
+      { src: '/js/cnzz.js'}
     ]
   },
   // mode: 'spa',
@@ -31,10 +33,12 @@ module.exports = {
   //   color: '#3B8070',
   //   background: 'white'
   // },
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/pwa'],// @nuxtjs/pwa -> DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
+  modules: ['@nuxtjs/axios'],
   plugins: [
     '~/plugins/axios',
     '~/plugins/ant-design-vue',
+    '~/plugins/svg-icon',
+    '~/plugins/vue-konva',
     '~/plugins/components',
     '~/plugins/filters',
     '~/plugins/directives'
@@ -46,12 +50,12 @@ module.exports = {
     middleware: ['route']
   },
   axios: {
-    baseURL: `${config.app.domain}/api`,
+    // baseURL: `${config.app.domain}`,
     // credentials: true,
-    // proxy:true
+    proxy:true
   },
   proxy:{
-    // '/api2': 'http://example.com'
+    '/api/': { target: 'http://127.0.0.1:7001', pathRewrite: {'^/api/': ''} }
   },
   watch: ['~/app.config.js'],
   manifest: {
@@ -60,15 +64,19 @@ module.exports = {
     theme_color: '#618cb9'
   },
   build: {
-    extend (config, { isDev, isClient }) {
-      if (isDev && isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
+    extend (config, ctx) {
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      svgRule.exclude = [resolve(__dirname, 'static/svg')]
+
+      // Includes /assets/svg for svg-sprite-loader
+      config.module.rules.push({
+        test: /\.svg$/,
+        include: [resolve(__dirname, 'static/svg')],
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: 'icon-[name]'
+        }
+      })
     }
   }
 }

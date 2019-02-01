@@ -1,6 +1,8 @@
+@import "var";
 @import "common";
-@import "layout/default";
+//layout
+@import "layout/index";
+//page
 @import "pages/index";
-@import "components/c-header";
-@import "components/c-footer";
-@import "components/app-logo";
+//components
+@import "components/index";

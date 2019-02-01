@@ -1,7 +1,6 @@
 <template>
   <section class="container">
     <div>
-      <app-logo/>
       <h2 class="subtitle">
         PWA Vue.js Application
       </h2>
@@ -14,14 +13,13 @@
           href="/mobile/home"
           class="button--grey">Mobile</a>
       </div>
-      <hello-world/>
+      <hi-jsx/>
     </div>
   </section>
 </template>
 
 <script>
   import {scrollMoreData} from "~/utils/mixins"
-  import HelloWorld from "~/components/HelloWorld"
 
   export default {
     mixins: [scrollMoreData],

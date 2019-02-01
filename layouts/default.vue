@@ -2,13 +2,13 @@
   <div>
     <a-layout>
       <a-layout-header>
-        <c-header/>
+        <div>header</div>
       </a-layout-header>
       <a-layout-content>
         <nuxt/>
       </a-layout-content>
       <a-layout-footer>
-        <c-footer/>
+        <div>footer</div>
       </a-layout-footer>
     </a-layout>
   </div>
