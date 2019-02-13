@@ -22,6 +22,7 @@ module.exports = {
       // { src: '//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'},
       // { src: '//g.alicdn.com/sj/lib/zepto/zepto.min.js'},
       // { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'},
+      { src: 'https://s19.cnzz.com/z_stat.php?id=1262375830&web_id=1262375830',language:'JavaScript'},   //change cnzz id
       { src: '/js/snap.svg-min.js'},
       { src: '/js/gt.js'},
       { src: '/js/cnzz.js'}
