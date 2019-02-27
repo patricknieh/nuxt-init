@@ -1,15 +1,5 @@
 <template>
   <div>
-    <a-layout>
-      <a-layout-header>
-        <div>header</div>
-      </a-layout-header>
-      <a-layout-content>
-        <nuxt/>
-      </a-layout-content>
-      <a-layout-footer>
-        <div>footer</div>
-      </a-layout-footer>
-    </a-layout>
+    <nuxt/>
   </div>
 </template>

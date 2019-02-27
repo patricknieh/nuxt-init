@@ -11,16 +11,22 @@ export function formatDate(str){
 export function numberUnit(num){
   return N.numberUnit(num)
 }
-export function formatRole(role){
-  switch (role) {
-    case 'superAdmin':
-      return '超级管理员'
+export function formatState(val){
+  switch (Number(val)) {
+    case 1:
+      return '未审核'
       break
-    case 'admin':
-      return '管理员'
+    case 2:
+      return '已通过'
       break
-    case 'user':
-      return '用户'
+    case 3:
+      return '已退回'
+      break
+    case 4:
+      return '不合格'
+      break
+    case 5:
+      return '审核中...'
       break
     default:
       return ''

@@ -1,4 +1,18 @@
+import check from './check'
 let str = {
+  stringifyArrValue: function(obj) {
+    for(let i in obj){
+      if(check.isArray(obj[i])) obj[i] = JSON.stringify(obj[i])
+    }
+    return obj
+  },
+  parseArrValue: function(obj) {
+    for(let i in obj){
+      let p = /^\[.*\]$/g
+      if(obj[i] && p.test(obj[i])) obj[i] = JSON.parse(obj[i])
+    }
+    return obj
+  },
   // 生成uuid
   uuid: function () {
     let S4 = function () {

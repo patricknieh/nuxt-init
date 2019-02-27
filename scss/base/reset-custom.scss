@@ -3,6 +3,10 @@ html,body{
   width: 100%;
   height: 100%;
 }
+pre{
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 a {
   color: inherit;
   text-decoration: none;

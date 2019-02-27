@@ -1,18 +1,16 @@
-import E from "~/utils/tools/event"
-export const scrollMoreData = {
-  mounted(){
-    this.throttleLoad = E.throttle(()=>{
-      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-      let containerHeight = $('.masonry').height() || $('.comment-wrapper').height()
-
-      console.log('scrollTop %o',scrollTop)
-      console.log('containerHeight %o',containerHeight)
-      if(scrollTop + 200 > containerHeight) this.loadMore()
-    },200)
-
-    window.addEventListener('scroll',this.throttleLoad)
-  },
-  destroyed(){
-    window.removeEventListener('scroll',this.throttleLoad)
+export const globalMethods = {
+  methods: {
+    resMsg(res,msg,error,callback){
+      if(res.success){
+        if(msg) this.$message({message: msg, type: 'success'})
+        callback(res.data)
+      }else {
+        if(error) {
+          this.$message.error(error)
+        }else {
+          this.$message.error(res.msg)
+        }
+      }
+    },
   }
 }

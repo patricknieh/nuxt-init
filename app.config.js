@@ -1,8 +1,7 @@
+let env =  process.env.__ENV
+
+console.log('env:',process.env.__ENV)
+
 module.exports = {
-  secret: 'nuxt-init',
-  app: {
-    domain: 'http://localhost:3000',
-    host: '0.0.0.0',
-    port: 3001
-  }
+  API_ROOT: env === 'prod' ? 'https://example.com' : (env === 'uat' ? 'https://example.com' : 'http://localhost:3000')
 }

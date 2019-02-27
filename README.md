@@ -8,12 +8,13 @@
 # 开发
 $ yarn dev
 
-# 静态部署
-$ yarn build
-$ pm2 start yarn start --name PROJECT_NAME
+# 动态部署
+$ yarn build:<env>
+$ pm2 start npm --name <taskname> -- run start:<env>
+$ pm2 restart <taskname>
 
 # 静态部署
-$ yarn generate
+$ yarn generate:<env>
 $ docker-compose up -d
 ```
 
