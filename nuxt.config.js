@@ -52,6 +52,8 @@ module.exports = {
     '~/plugins/filters',
     '~/plugins/mixins',
     '~/plugins/directives',
+    '~/plugins/vue-quill-editor',
+    // '~/plugins/vue-awesome-swiper',
     // '~/plugins/vue-konva',
   ],
   css: [
