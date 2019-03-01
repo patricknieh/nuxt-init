@@ -1,4 +1,4 @@
-let ui = {
+let user = {
   hashToTop:function (documentId) {
     location.hash = ''
     location.hash = documentId
@@ -9,4 +9,4 @@ let ui = {
   }
 }
 
-export default ui
+export default user

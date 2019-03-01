@@ -1,5 +1,4 @@
-import N from '~/utils/tools/net'
-import request from 'superagent'
+import Net from '~/utils/tools/net'
 
 const queryString = require('query-string')
 const uuidv1 = require('uuid/v1')
@@ -29,30 +28,25 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ dispatch, commit, getters, state }, { app, req, res }) {
     if (req.headers.cookie) {
-      let cookie = N.parseCookies(req.headers.cookie)
+      let cookie = Net.cookie.parse(req.headers.cookie)
       console.log(cookie)
       if(cookie.paddy_token) commit('SET_TOKEN', cookie.paddy_token)
     }
   },
 
-  // 上传文件
-  async UPLOAD_FILE({ commit, state, getters }, file) {
-    return await request.post(`https://meadend.7ipr.com/ipr/fastdfs/upload`).attach('file', file).then(res => res.body)
-  },
-
-  // 用户登录
+  // 登录
   async LOGIN({ commit, state, getters }, payload) {
     const res = await this.$axios.$post(`/api/BaRegistration/login`, queryString.stringify(Object.assign(payload,uuid)))
     if(res.success) {
       commit('SET_TOKEN', res.data.name)
-      N.setCookie('paddy_token',res.data.name)
+      Net.cookie.set('paddy_token',res.data.name)
     }
     return res
   },
 
   // 登出
   async LOGOUT({ commit, state, getters }) {
-    N.removeCookie('paddy_token')
+    Net.cookie.remove('paddy_token')
     commit('SET_TOKEN', null)
 
     location.reload()
