@@ -177,6 +177,19 @@ let net = {
       }
       return '';
     },
+    getFrom: function (cookie,name) {
+      var cookieName = encodeURIComponent(name) + "=",
+        cookieStart = cookie.indexOf(cookieName),
+        cookieValue = null
+      if(cookieStart > -1){
+        var cookieEnd = cookie.indexOf(";",cookieStart)
+        if(cookieEnd == -1){
+          cookieEnd = cookie.length
+        }
+        cookieValue = decodeURIComponent(cookie.substring(cookieStart + cookieName.length,cookieEnd))
+      }
+      return cookieValue
+    },
     remove: function (name) {
       this.set(name, 1, -1);
     }
