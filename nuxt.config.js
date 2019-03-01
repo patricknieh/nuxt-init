@@ -20,12 +20,12 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', href: '/icon.png' },
-      { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css' },
+      // { rel: 'stylesheet', href: '//unpkg.com/mint-ui/lib/style.css' },      //mint-ui
+      { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css' },      //sui
     ],
     script: [
-      // { src: '//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'},      //jauery
       { src: '//g.alicdn.com/sj/lib/zepto/zepto.min.js'},      //zepto
-      { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'},      //msui
+      { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'},      //sui
       // { src: 'https://s19.cnzz.com/z_stat.php?id=1262375830&web_id=1262375830',language:'JavaScript'},   //change cnzz id
       // { src: '/js/snap.svg-min.js'},      //snap
       // { src: '/js/gt.js'}      //极验
@@ -45,11 +45,13 @@ module.exports = {
     },
     '~/plugins/i18n',
     '~/plugins/ant-design-vue',
+    // '~/plugins/element-ui',
+    // '~/plugins/mint-ui',
     '~/plugins/components',
     '~/plugins/svg-icon',
     '~/plugins/filters',
     '~/plugins/mixins',
-    // '~/plugins/directives',
+    '~/plugins/directives',
     // '~/plugins/vue-konva',
   ],
   css: [
