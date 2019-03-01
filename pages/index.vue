@@ -1,13 +1,13 @@
 <template>
   <div class="home-page">
     <svg-icon icon-class="user"/>
-    <hi-jsx/>
+    <jsx/>
   </div>
 </template>
 
 <script>
-  import HiJsx from '~/components/hi-jsx'
+  import jsx from '~/components/jsx'
   export default {
-    components: {HiJsx}
+    components: {jsx}
   };
 </script>
