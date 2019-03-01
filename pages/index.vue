@@ -1,6 +1,7 @@
 <template>
   <div class="home-page">
     home
+    <svg-icon icon-class="user"/>
   </div>
 </template>
 

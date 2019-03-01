@@ -1,4 +1,5 @@
 const config = require('./app.config')
+const { resolve } = require('path')
 
 module.exports = {
   server: {
@@ -44,11 +45,11 @@ module.exports = {
     },
     '~/plugins/i18n',
     '~/plugins/element-ui',
-    // '~/plugins/components',
+    '~/plugins/components',
+    '~/plugins/svg-icon',
     '~/plugins/filters',
-    // '~/plugins/directives',
     '~/plugins/mixins',
-    // '~/plugins/svg-icon',
+    // '~/plugins/directives',
     // '~/plugins/vue-konva',
   ],
   css: [
@@ -76,18 +77,17 @@ module.exports = {
   },
   build: {
     extend (config, ctx) {
-      // const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
-      // svgRule.exclude = [resolve(__dirname, 'static/svg')]
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      svgRule.exclude = [resolve(__dirname, 'static/svg')]
 
-      // Includes /assets/svg for svg-sprite-loader
-      // config.module.rules.push({
-      //   test: /\.svg$/,
-      //   include: [resolve(__dirname, 'static/svg')],
-      //   loader: 'svg-sprite-loader',
-      //   options: {
-      //     symbolId: 'icon-[name]'
-      //   }
-      // })
+      config.module.rules.push({
+        test: /\.svg$/,
+        include: [resolve(__dirname, 'static/svg')],
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: 'icon-[name]'
+        }
+      })
     }
   }
 }
