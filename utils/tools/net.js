@@ -153,36 +153,41 @@ let net = {
       }
       return cookieObj
     },
-    set: function (name, value, day) {
-      let setting = arguments[0];
-      if (Object.prototype.toString.call(setting).slice(8, -1) === 'Object') {
-        for (let i in setting) {
-          let oDate = new Date();
-          oDate.setDate(oDate.getDate() + day);
-          document.cookie = i + '=' + setting[i] + ';expires=' + oDate;
-        }
-      } else {
-        let oDate = new Date();
-        oDate.setDate(oDate.getDate() + day);
-        document.cookie = name + '=' + value + ';expires=' + oDate;
+    set: function (name,value,expires,path,domain,secure) {
+      let cookieText = encodeURIComponent(name) + "=" + encodeURIComponent(value)
+      if(expires instanceof Date){
+        cookieText += "; expires=" + expires.toGMTString()
       }
+      if(path){
+        cookieText += "; path=" + path
+      }
+      if(domain){
+        cookieText += "; domain=" + domain
+      }
+      if(secure){
+        cookieText += "; secure"
+      }
+      document.cookie = cookieText
     },
     get: function (name) {
-      let arr = document.cookie.split('; ');
-      for (let i = 0; i < arr.length; i++) {
-        let arr2 = arr[i].split('=');
-        if (arr2[0] == name) {
-          return arr2[1];
+      let cookieName = encodeURIComponent(name) + "=",
+        cookieStart = document.cookie.indexOf(cookieName),
+        cookieValue = null
+      if(cookieStart > -1){
+        let cookieEnd = document.cookie.indexOf(";",cookieStart)
+        if(cookieEnd == -1){
+          cookieEnd = document.cookie.length
         }
+        cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length,cookieEnd))
       }
-      return '';
+      return cookieValue
     },
     getFrom: function (cookie,name) {
-      var cookieName = encodeURIComponent(name) + "=",
+      let cookieName = encodeURIComponent(name) + "=",
         cookieStart = cookie.indexOf(cookieName),
         cookieValue = null
       if(cookieStart > -1){
-        var cookieEnd = cookie.indexOf(";",cookieStart)
+        let cookieEnd = cookie.indexOf(";",cookieStart)
         if(cookieEnd == -1){
           cookieEnd = cookie.length
         }
@@ -190,8 +195,8 @@ let net = {
       }
       return cookieValue
     },
-    remove: function (name) {
-      this.set(name, 1, -1);
+    remove: function (name,path,domain,secure) {
+      this.set(name,"",new Date(0),path,domain,secure)
     }
   },
   storage: {
