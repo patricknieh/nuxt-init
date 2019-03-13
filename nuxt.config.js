@@ -65,11 +65,11 @@ module.exports = {
   axios: {
     // baseURL: `${config.app.domain}`,
     // credentials: true,
-    proxy:true,
+    proxy:true,   //调用第三方api解决跨域问题
     debug: process.env.__ENV == 'dev' ? true : false
   },
   proxy:{
-    '/api/': { target: config.API_ROOT, pathRewrite: {'^/api/': ''} }
+    '/di-api/': { target: 'http://114.251.8.193', pathRewrite: {'^/di-api/': ''} }
   },
   env: {
     __ENV: process.env.__ENV
