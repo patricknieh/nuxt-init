@@ -5,7 +5,7 @@
   "author": "paddy <patricknieh@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env __ENV=dev nuxt",
     "build:uat": "cross-env __ENV=uat nuxt build",
     "build:prod": "cross-env __ENV=prod nuxt build",
     "start:uat": "cross-env __ENV=uat nuxt start",
