@@ -45,7 +45,7 @@ module.exports = {
     },
     '~/plugins/i18n',
     // '~/plugins/ant-design-vue',
-    // '~/plugins/element-ui',
+    '~/plugins/element-ui',
     // '~/plugins/mint-ui',
     '~/plugins/components',
     '~/plugins/svg-icon',
@@ -65,11 +65,11 @@ module.exports = {
   axios: {
     // baseURL: `${config.app.domain}`,
     // credentials: true,
-    // proxy:true
+    proxy:true,
     debug: process.env.__ENV == 'dev' ? true : false
   },
   proxy:{
-    // '/api/': { target: config.API_ROOT, pathRewrite: {'^/api/': ''} }
+    '/api/': { target: config.API_ROOT, pathRewrite: {'^/api/': ''} }
   },
   env: {
     __ENV: process.env.__ENV
