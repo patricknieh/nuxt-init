@@ -1,44 +1,200 @@
 let date = {
   /**
-   * 格式化时间
-   *
-   * @param  {time} 时间
-   * @param  {cFormat} 格式
-   * @return {String} 字符串
-   *
-   * @example formatTime('2018-1-29', '{y}/{m}/{d} {h}:{i}:{s}') // -> 2018/01/29 00:00:00
+   * 计算时间
+   * @param date
+   * @param pattern year,month,day,hour,minute,seconds,week,daytime,when
+   * @returns {*}
    */
-  formatTime: function (time, cFormat) {
-    if (arguments.length === 0) return null
-    if ((time + '').length === 10) {
-      time = +time * 1000
+  countTime: function (date, pattern) {
+    let d = date
+    let day = d.getDate();
+    let month = d.getMonth() + 1;
+    let year = d.getFullYear();
+    let hour = d.getHours();
+    let minute = d.getMinutes();
+    let seconds = d.getSeconds();
+    if (year < 10) {
+      year = "0" + year
     }
 
-    let format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}', date
-    if (typeof time === 'object') {
-      date = time
-    } else {
-      date = new Date(time)
+    if (day < 10) {
+      day = "0" + day
     }
 
-    let formatObj = {
-      y: date.getFullYear(),
-      m: date.getMonth() + 1,
-      d: date.getDate(),
-      h: date.getHours(),
-      i: date.getMinutes(),
-      s: date.getSeconds(),
-      a: date.getDay()
+    if (hour < 10) {
+      hour = "0" + hour
     }
-    let time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-      let value = formatObj[key]
-      if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1]
-      if (result.length > 0 && value < 10) {
-        value = '0' + value
+
+    if (minute < 10) {
+      minute = "0" + minute
+    }
+
+    if (seconds < 10) {
+      seconds = "0" + seconds
+    }
+
+    if (pattern == "year") {
+      return year;
+    }
+
+    if (pattern == "month") {
+      return month;
+    }
+
+    if (pattern == "day") {
+      return day;
+    }
+
+    if (pattern == "hour") {
+      return hour;
+    }
+
+    if (pattern == "minute") {
+      return minute;
+    }
+
+    if (pattern == "seconds") {
+      return seconds;
+    }
+
+    if (pattern == "week") {
+      let w_d;
+      switch (d.getDay()) {
+        case 0:
+          w_d = "星期天";
+          break;
+        case 1:
+          w_d = "星期一";
+          break;
+        case 2:
+          w_d = "星期二";
+          break;
+        case 3:
+          w_d = "星期三";
+          break;
+        case 4:
+          w_d = "星期四";
+          break;
+        case 5:
+          w_d = "星期五";
+          break;
+        case 6:
+          w_d = "星期六";
+          break;
       }
-      return value || 0
-    })
-    return time_str
+      return w_d;
+    }
+
+    if (pattern == "daytime") {
+      if (hour < 11 && hour > 6) {
+        return "早晨";
+      }
+      if (hour <= 14 && hour >= 11) {
+        return "中午";
+      }
+      if (hour > 14 && hour < 19) {
+        return "下午";
+      }
+      if (hour >= 19 && hour <= 23) {
+        return "晚上";
+      }
+      if (hour < 6 && hour >= 0) {
+        return "凌晨";
+      }
+    }
+
+    if (pattern == "when") {
+      let now = new Date();
+      let now_year = now.getFullYear();
+      let now_month = now.getMonth() + 1;
+      let now_day = now.getDate();
+      let now_hour = now.getHours();
+      let now_minute = now.getMinutes();
+      let now_seconds = now.getSeconds();
+
+      // 比较年份
+      if (now_year > year) {
+        return (now_year - year) + '年前'
+      } else if (now_year == year) {
+        // 比较月份
+        if (now_month > month) {
+          return (now_month - month) + '个月前'
+        } else if (now_month == month) {
+          // 比较号数
+          if (now_day > day) {
+            return (now_day - day) + '天前'
+          } else if (now_day == day) {
+            // 比较小时
+            if (now_hour > hour) {
+              return (now_hour - hour) + '小时前'
+            } else if (now_hour == hour) {
+              // 比较分钟
+              if (now_minute > minute) {
+                return (now_minute - minute) + '分钟前'
+              } else if (now_minute == minute) {
+                // 比较秒
+                if (now_seconds > seconds) {
+                  return (now_seconds - seconds) + '秒前'
+                } else if (now_seconds == seconds) {
+                  return '刚刚'
+                } else {
+                  return (seconds - now_seconds) + '秒后'
+                }
+              } else {
+                return (minute - now_minute) + '分钟后'
+              }
+            } else {
+              return (hour - now_hour) + '小时后'
+            }
+          } else {
+            return (day - now_day) + '天后'
+          }
+        } else {
+          return (month - now_month) + '个月后'
+        }
+      } else {
+        return (year - now_year) + '年后'
+      }
+    }
+  },
+  // 获取时间戳
+  getTimeStamp: function () {
+    return new Date().getTime();
+  },
+  // 转换long值为日期字符串
+  getFormatDateByTimeStamp: function (timeStamp, pattern) {
+    return this.getFormatDate(new Date(timeStamp), pattern);
+  },
+  // 转换日期对象为日期字符串
+  getFormatDate: function (date, pattern) {
+    // 不传入date默认为当前时间
+    if (date == undefined) {
+      date = new Date();
+    }
+    // 不传入格式默认为全格式
+    if (pattern == undefined) {
+      pattern = "YYYY-MM-DD hh:mm:ss";
+    }
+
+    let o = {
+      "M+": date.getMonth() + 1,
+      "D+": date.getDate(),
+      "h+": date.getHours(),
+      "m+": date.getMinutes(),
+      "s+": date.getSeconds(),
+      "q+": Math.floor((date.getMonth() + 3) / 3),
+      "S": date.getMilliseconds()
+    };
+    if (/(Y+)/.test(pattern)) {
+      pattern = pattern.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+
+    for (let k in o) {
+      if (new RegExp("(" + k + ")").test(pattern)) {
+        pattern = pattern.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+      }
+    }
+    return pattern;
   },
   /**
    * 返回指定长度的月份集合
@@ -205,205 +361,6 @@ let date = {
     let numdays = this.getDayOfYear(time);
     return Math.ceil(numdays / 7);
   },
-  // 获取时间戳
-  timeStamp: function () {
-    return new Date().getTime();
-  },
-  // 转换long值为日期字符串
-  getFormatDateByTimeStamp: function (timeStamp, pattern) {
-    return this.getFormatDate(new Date(timeStamp), pattern);
-  },
-  // 转换日期对象为日期字符串
-  getFormatDate: function (date, pattern) {
-    // 不传入date默认为当前时间
-    if (date == undefined) {
-      date = new Date();
-    }
-    // 不传入格式默认为全格式
-    if (pattern == undefined) {
-      pattern = "YYYY-MM-DD hh:mm:ss";
-    }
-
-    let o = {
-      "M+": date.getMonth() + 1,
-      "D+": date.getDate(),
-      "h+": date.getHours(),
-      "m+": date.getMinutes(),
-      "s+": date.getSeconds(),
-      "q+": Math.floor((date.getMonth() + 3) / 3),
-      "S": date.getMilliseconds()
-    };
-    if (/(Y+)/.test(pattern)) {
-      pattern = pattern.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-
-    for (let k in o) {
-      if (new RegExp("(" + k + ")").test(pattern)) {
-        pattern = pattern.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
-      }
-    }
-    return pattern;
-  },
-  /**
-   * 计算时间
-   * @param date
-   * @param pattern year,month,day,hour,minute,seconds,week,daytime,when
-   * @returns {*}
-   */
-  countTime: function (date, pattern) {
-    let d = date
-    let day = d.getDate();
-    let month = d.getMonth() + 1;
-    let year = d.getFullYear();
-    let hour = d.getHours();
-    let minute = d.getMinutes();
-    let seconds = d.getSeconds();
-    if (year < 10) {
-      year = "0" + year
-    }
-    ;
-    if (day < 10) {
-      day = "0" + day
-    }
-    ;
-    if (hour < 10) {
-      hour = "0" + hour
-    }
-    ;
-    if (minute < 10) {
-      minute = "0" + minute
-    }
-    ;
-    if (seconds < 10) {
-      seconds = "0" + seconds
-    }
-    ;
-
-    if (pattern == "year") {
-      return year;
-    }
-    ;
-    if (pattern == "month") {
-      return month;
-    }
-    ;
-    if (pattern == "day") {
-      return day;
-    }
-    ;
-    if (pattern == "hour") {
-      return hour;
-    }
-    ;
-    if (pattern == "minute") {
-      return minute;
-    }
-    ;
-    if (pattern == "seconds") {
-      return seconds;
-    }
-    ;
-
-    if (pattern == "week") {
-      let w_d;
-      switch (d.getDay()) {
-        case 0:
-          w_d = "星期天";
-          break;
-        case 1:
-          w_d = "星期一";
-          break;
-        case 2:
-          w_d = "星期二";
-          break;
-        case 3:
-          w_d = "星期三";
-          break;
-        case 4:
-          w_d = "星期四";
-          break;
-        case 5:
-          w_d = "星期五";
-          break;
-        case 6:
-          w_d = "星期六";
-          break;
-      }
-      return w_d;
-    }
-
-    if (pattern == "daytime") {
-      if (hour < 11 && hour > 6) {
-        return "早晨";
-      }
-      if (hour <= 14 && hour >= 11) {
-        return "中午";
-      }
-      if (hour > 14 && hour < 19) {
-        return "下午";
-      }
-      if (hour >= 19 && hour <= 23) {
-        return "晚上";
-      }
-      if (hour < 6 && hour >= 0) {
-        return "凌晨";
-      }
-    }
-
-    if (pattern == "when") {
-      let now = new Date();
-      let now_year = now.getFullYear();
-      let now_month = now.getMonth() + 1;
-      let now_day = now.getDate();
-      let now_hour = now.getHours();
-      let now_minute = now.getMinutes();
-      let now_seconds = now.getSeconds();
-
-      // 比较年份
-      if (now_year > year) {
-        return (now_year - year) + '年前'
-      } else if (now_year == year) {
-        // 比较月份
-        if (now_month > month) {
-          return (now_month - month) + '个月前'
-        } else if (now_month == month) {
-          // 比较号数
-          if (now_day > day) {
-            return (now_day - day) + '天前'
-          } else if (now_day == day) {
-            // 比较小时
-            if (now_hour > hour) {
-              return (now_hour - hour) + '小时前'
-            } else if (now_hour == hour) {
-              // 比较分钟
-              if (now_minute > minute) {
-                return (now_minute - minute) + '分钟前'
-              } else if (now_minute == minute) {
-                // 比较秒
-                if (now_seconds > seconds) {
-                  return (now_seconds - seconds) + '秒前'
-                } else if (now_seconds == seconds) {
-                  return '刚刚'
-                } else {
-                  return (seconds - now_seconds) + '秒后'
-                }
-              } else {
-                return (minute - now_minute) + '分钟后'
-              }
-            } else {
-              return (hour - now_hour) + '小时后'
-            }
-          } else {
-            return (day - now_day) + '天后'
-          }
-        } else {
-          return (month - now_month) + '个月后'
-        }
-      } else {
-        return (year - now_year) + '年后'
-      }
-    }
-  },
 
   /*转换日期*/
   _transferDate: function (date) {
@@ -455,7 +412,6 @@ let date = {
     let etimes = this._getTime(this._transferDate(date2));
     return etimes - stimes;
   },
-
   /*某个日期加上多少毫秒*/
   _plusMillisSeconds: function (date, millisSeconds) {
     let dateTime = this._getTime(date);
@@ -574,7 +530,6 @@ let date = {
     let rdate = dateTime - dateTime2;
     return this._format(new Date(rdate));
   },
-
   /*获取一个月有多少天*/
   _getMonthOfDay: function (date1) {
     let currentMonth = this._getFirstDayOfMonth(date1);
@@ -608,7 +563,6 @@ let date = {
   _getHourOfDay: function (date) {
     return this._getHour(date);
   },
-
   /*判断两个时间是否一样*/
   _eq: function (date1, date2) {
     let stime = this._getTime(this._transferDate(date1));
@@ -699,7 +653,6 @@ let date = {
     let dates = this._getDay(date);
     return year + "-" + month + "-" + dates + " 23:59:59";
   },
-
   /*时间格式化*/
   _format: function (date) {
     return this._getYear(date) + "-" + this._getMonth(date) + "-" + this._getDay(date) + " " + this._getHour(date) + ":" + this._getMinute(date) + ":" + this._getSecond(date);
@@ -746,7 +699,6 @@ let date = {
   _getMillisecond: function (date) {
     return this._transferDate(date).getMilliseconds();
   },
-
   /*获取今天在当年是第几季度*/
   _getPeriod: function (date) {
     let month = this._getMonth(date) * 1;

@@ -36,7 +36,7 @@ export const actions = {
 
   // 登录
   async LOGIN({ commit, state, getters }, payload) {
-    const res = await this.$axios.$post(`/api/BaRegistration/login`, queryString.stringify(Object.assign(payload,uuid)))
+    const res = await this.$axios.$post(`/api/login`, queryString.stringify(Object.assign(payload,uuid)))
     if(res.success) {
       commit('SET_TOKEN', res.data.name)
       Net.cookie.set('paddy_token',res.data.name)

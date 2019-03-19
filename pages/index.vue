@@ -7,7 +7,11 @@
 
 <script>
   import jsx from '~/components/jsx'
+
   export default {
-    components: {jsx}
+    components: {jsx},
+    async mounted(){
+
+    }
   };
 </script>

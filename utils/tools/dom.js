@@ -105,6 +105,14 @@ let dom = {
     if(typeof dom != "undefined"){
       document.getElementsByTagName("head")[0].appendChild(dom);
     }
+  },
+  hashToTop:function (documentId) {
+    location.hash = ''
+    location.hash = documentId
+  },
+  backToTop:function () {
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
   }
 }
 export default dom
