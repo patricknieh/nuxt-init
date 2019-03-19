@@ -113,6 +113,9 @@ let dom = {
   backToTop:function () {
     document.documentElement.scrollTop = 0
     document.body.scrollTop = 0
+  },
+  randomColor:function () {
+    return '#'+Math.floor(Math.random()*0xffffff).toString(16)
   }
 }
 export default dom
