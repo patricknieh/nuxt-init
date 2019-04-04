@@ -29,8 +29,7 @@ export const actions = {
   async nuxtServerInit({ dispatch, commit, getters, state }, { app, req, res }) {
     if (req.headers.cookie) {
       let cookie = Net.cookie.parse(req.headers.cookie)
-      console.log(cookie)
-      if(cookie.paddy_token) commit('SET_TOKEN', cookie.paddy_token)
+      if(cookie.token) commit('SET_TOKEN', cookie.token)
     }
   },
 
@@ -39,15 +38,15 @@ export const actions = {
     const res = await this.$axios.$post(`/api/login`, queryString.stringify(Object.assign(payload,uuid)))
     if(res.success) {
       commit('SET_TOKEN', res.data.name)
-      Net.cookie.set('paddy_token',res.data.name)
+      Net.cookie.set('token',res.data.name)
     }
     return res
   },
 
   // 登出
   async LOGOUT({ commit, state, getters }) {
-    Net.cookie.remove('paddy_token')
-    commit('SET_TOKEN', null)
+    Net.cookie.remove('token')
+    commit('SET_TOKEN', '')
 
     location.reload()
     return
