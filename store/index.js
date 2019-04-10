@@ -1,4 +1,5 @@
 import Net from '~/utils/tools/net'
+import Cookies from 'js-cookie'
 
 const queryString = require('query-string')
 const uuidv1 = require('uuid/v1')
@@ -38,14 +39,14 @@ export const actions = {
     const res = await this.$axios.$post(`/api/login`, queryString.stringify(Object.assign(payload,uuid)))
     if(res.success) {
       commit('SET_TOKEN', res.data.name)
-      Net.cookie.set('token',res.data.name)
+      Cookies.set('token',res.data.name)
     }
     return res
   },
 
   // 登出
   async LOGOUT({ commit, state, getters }) {
-    Net.cookie.remove('token')
+    Cookies.remove('token')
     commit('SET_TOKEN', '')
 
     location.reload()
