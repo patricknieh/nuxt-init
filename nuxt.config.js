@@ -37,7 +37,7 @@ module.exports = {
   //   color: '#3B8070',
   //   background: 'white'
   // },
-  modules: ['@nuxtjs/axios'],
+  modules: ['@nuxtjs/axios','@nuxtjs/pwa'],
   plugins: [
     {
       src: "~/plugins/axios",
@@ -66,7 +66,7 @@ module.exports = {
     // baseURL: `${config.app.domain}`,
     // credentials: true,
     proxy:true,   //调用第三方api解决跨域问题
-    debug: process.env.__ENV == 'dev' ? true : false
+    debug: process.env.__ENV == 'development' ? true : false
   },
   proxy:{
     '/di-api/': { target: 'http://114.251.8.193', pathRewrite: {'^/di-api/': ''} }

@@ -5,13 +5,13 @@
   "author": "paddy <patricknieh@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env __ENV=dev nuxt",
+    "dev": "cross-env __ENV=development nuxt",
     "build:uat": "cross-env __ENV=uat nuxt build",
-    "build:prod": "cross-env __ENV=prod nuxt build",
+    "build:production": "cross-env __ENV=production nuxt build",
     "start:uat": "cross-env __ENV=uat nuxt start",
-    "start:prod": "cross-env __ENV=prod nuxt start",
+    "start:production": "cross-env __ENV=production nuxt start",
     "generate:uat": "cross-env __ENV=uat nuxt generate",
-    "generate:prod": "cross-env __ENV=prod nuxt generate",
+    "generate:production": "cross-env __ENV=production nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },
