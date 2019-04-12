@@ -153,36 +153,7 @@ let net = {
       }
       return cookieObj
     },
-    set: function (name,value,expires,path,domain,secure) {
-      let cookieText = encodeURIComponent(name) + "=" + encodeURIComponent(value)
-      if(expires instanceof Date){
-        cookieText += "; expires=" + expires.toGMTString()
-      }
-      if(path){
-        cookieText += "; path=" + path
-      }
-      if(domain){
-        cookieText += "; domain=" + domain
-      }
-      if(secure){
-        cookieText += "; secure"
-      }
-      document.cookie = cookieText
-    },
-    get: function (name) {
-      let cookieName = encodeURIComponent(name) + "=",
-        cookieStart = document.cookie.indexOf(cookieName),
-        cookieValue = null
-      if(cookieStart > -1){
-        let cookieEnd = document.cookie.indexOf(";",cookieStart)
-        if(cookieEnd == -1){
-          cookieEnd = document.cookie.length
-        }
-        cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length,cookieEnd))
-      }
-      return cookieValue
-    },
-    getFrom: function (cookie,name) {
+    getFromCookie: function (cookie,name) {
       let cookieName = encodeURIComponent(name) + "=",
         cookieStart = cookie.indexOf(cookieName),
         cookieValue = null
@@ -194,9 +165,6 @@ let net = {
         cookieValue = decodeURIComponent(cookie.substring(cookieStart + cookieName.length,cookieEnd))
       }
       return cookieValue
-    },
-    remove: function (name,path,domain,secure) {
-      this.set(name,"",new Date(0),path,domain,secure)
     }
   },
   storage: {
