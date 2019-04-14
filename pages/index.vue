@@ -10,7 +10,7 @@
 
   export default {
     components: {jsx},
-    async mounted(){
+    async mounted() {
 
     }
   };

@@ -1,13 +1,13 @@
-const config = require('./app.config')
+const app_config = require('./app.config')
 const { resolve } = require('path')
 
 module.exports = {
   server: {
-    port: 3000, // default: 3000
-    host: '0.0.0.0', // default: localhost
+    host: app_config.host, // default: localhost
+    port: app_config.port, // default: 3000
   },
   head: {
-    title: 'title',
+    title: 'nuxt-init',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -63,7 +63,7 @@ module.exports = {
     middleware: ['route']
   },
   axios: {
-    // baseURL: `${config.app.domain}`,
+    // baseURL: `${app_config.domain}`,
     // credentials: true,
     proxy:true,   //调用第三方api解决跨域问题
     debug: process.env.__ENV == 'development' ? true : false
