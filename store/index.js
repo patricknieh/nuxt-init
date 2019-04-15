@@ -2,7 +2,7 @@ import Net from '~/utils/tools/net'
 import Cookies from 'js-cookie'
 import request from 'superagent'
 
-import app_config from '../app.config'
+import {TOKEN_NAME} from "../config"
 
 const queryString = require('query-string')
 const uuidv1 = require('uuid/v1')
@@ -35,7 +35,7 @@ export const actions = {
       let cookie = Net.cookie.parse(req.headers.cookie)
       console.log(cookie)
 
-      let token = cookie[app_config.token_name]
+      let token = cookie[TOKEN_NAME]
       if(token) {
         let res = await request.get(`http://localhost:7001/user/${token}`)
         let resObj = JSON.parse(res.text)
@@ -54,7 +54,7 @@ export const actions = {
     const res = await this.$axios.$post(`/api/user/login`, payload)
     if(res.success) {
       commit('SET_TOKEN', res.data.token)
-      Cookies.set(app_config.token_name, res.data.token)
+      Cookies.set(TOKEN_NAME, res.data.token)
 
       let d = await this.$axios.$get(`/api/user/${res.data.token}`)
       if(d.success) commit('SET_USER',d.data)
@@ -67,7 +67,7 @@ export const actions = {
     // const res = await this.$axios.$post(`/api/user/logout`)
     commit('SET_TOKEN', '')
     commit('SET_USER', {})
-    Cookies.remove(app_config.token_name)
+    Cookies.remove(TOKEN_NAME)
     location.reload()
   },
 }

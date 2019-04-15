@@ -1,7 +1,6 @@
 import axios from 'axios'
 import qs from 'query-string'
-
-const HOST_ROOT = process.env._ENV === 'production' ? 'http://production.com' : 'http://development.com'
+import {API_HOST} from "../config"
 
 //global defaults
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -43,8 +42,8 @@ function post(url, data) {
 
 //api
 export function getData(params) {
-  return fetch(`${HOST_ROOT}/api/getData?${qs.stringify(params)}`)
+  return fetch(`${API_HOST}/api/getData?${qs.stringify(params)}`)
 }
 export function postData(data) {
-  return post(`${HOST_ROOT}/api/postData`,data)
+  return post(`${API_HOST}/api/postData`,data)
 }
