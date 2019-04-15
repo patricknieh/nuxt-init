@@ -6,6 +6,9 @@ module.exports = {
     host: '0.0.0.0', // default: localhost
     port: 3000      // default: 3000
   },
+  env: {
+    __ENV: process.env.__ENV
+  },
   head: {
     title: 'nuxt-init',
     meta: [
@@ -70,9 +73,6 @@ module.exports = {
   },
   proxy:{
     '/di-api/': { target: 'http://114.251.8.193', pathRewrite: {'^/di-api/': ''} }
-  },
-  env: {
-    __ENV: process.env.__ENV
   },
   watch: ['~/app.config.js'],
   manifest: {
