@@ -8,7 +8,7 @@
     </el-form>
     <ul class="todo-list">
       <li v-for="todo of todos" :key="todo.id">
-        <el-checkbox v-model="todo.finished" @change="handleChange(todo)">{{todo.title}}</el-checkbox>
+        <el-checkbox v-model="todo.finished">{{todo.title}}</el-checkbox>
       </li>
     </ul>
     <div>{{left}} item(s) is unfinished!</div>
@@ -22,13 +22,12 @@
     data() {
       return {
         inputValue: '',
-        todos: [],
-        done: 0
+        todos: []
       }
     },
     computed: {
       left() {
-        return this.todos.length - this.done
+        return this.todos.filter(todo => !todo.finished).length
       }
     },
     methods: {
@@ -39,13 +38,6 @@
           finished: false
         })
         this.inputValue = ''
-      },
-      handleChange(todo) {
-        if(todo.finished) {
-          this.done ++
-        }else {
-          this.done --
-        }
       }
     }
   };
