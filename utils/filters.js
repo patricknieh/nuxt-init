@@ -1,6 +1,6 @@
-import Num from '~/utils/tools/number'
-import Str from '~/utils/tools/string'
-import Date from '~/utils/tools/date'
+import numTool from '../tools/number'
+import strTool from '../tools/string'
+import dateTool from '../tools/date'
 
 export function numberUnit(num){
   switch (true) {
@@ -19,21 +19,21 @@ export function numberUnit(num){
 }
 
 export function formatSmallChinese(num){
-  return Num.formatSmallChinese(num)
+  return numTool.formatSmallChinese(num)
 }
 
 export function formatMoney(num){
-  return Num.formatMoney(num)
+  return numTool.formatMoney(num)
 }
 
 export function formatBigMoney(num){
-  return Num.formatBigMoney(num)
+  return numTool.formatBigMoney(num)
 }
 
 export function ellipsis(str){
-  return Str.ellipsis(str, 100)
+  return strTool.ellipsis(str, 100)
 }
 
 export function formatDate(date) {
-  return Date.getFormatDate(date)
+  return dateTool.getFormatDate(date)
 }

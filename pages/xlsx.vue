@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import xlsxTool from '~/utils/tools/xlsx'
+  import xlsxTool from '../tools/xlsx'
 
   export default {
     data() {

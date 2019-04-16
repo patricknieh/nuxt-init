@@ -1,4 +1,4 @@
-import Net from '~/utils/tools/net'
+import netTool from '../tools/net'
 import Cookies from 'js-cookie'
 import request from 'superagent'
 
@@ -31,7 +31,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ dispatch, commit, getters, state }, { app, req, res }) {
     if (req.headers.cookie) {
-      let cookie = Net.cookie.parse(req.headers.cookie)
+      let cookie = netTool.cookie.parse(req.headers.cookie)
       console.log(cookie)
 
       let token = cookie[TOKEN_NAME]
