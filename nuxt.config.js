@@ -1,4 +1,5 @@
 const { resolve } = require('path')
+const {API_HOST} = require('config')
 
 console.log('env: %o',process.env.__ENV)
 module.exports = {
@@ -69,12 +70,12 @@ module.exports = {
     // baseURL: ``,
     // credentials: true,
     proxy:true,   //调用第三方api解决跨域问题
-    debug: process.env.__ENV == 'development' ? true : false
+    debug: process.env.__ENV === 'development' ? true : false
   },
   proxy:{
-    '/di-api/': { target: 'http://114.251.8.193', pathRewrite: {'^/di-api/': ''} }
+    '/api/': { target: API_HOST, pathRewrite: {'^/api/': ''} }
   },
-  watch: ['~/app.config.js'],
+  // watch: ['~/app.config.js'],
   manifest: {
     name: 'nuxt-init',
     description: 'A pwa program',

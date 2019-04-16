@@ -2,8 +2,7 @@ import Net from '~/utils/tools/net'
 import Cookies from 'js-cookie'
 import request from 'superagent'
 
-import {TOKEN_NAME} from "../config"
-
+const {API_HOST,TOKEN_NAME} = require('../config')
 const queryString = require('query-string')
 const uuidv1 = require('uuid/v1')
 const uuid = {uuid: uuidv1()}
@@ -37,7 +36,7 @@ export const actions = {
 
       let token = cookie[TOKEN_NAME]
       if(token) {
-        let res = await request.get(`http://localhost:7001/user/${token}`)
+        let res = await request.get(`${API_HOST}/user/${token}`)
         let resObj = JSON.parse(res.text)
         if(resObj.success){
           commit('SET_TOKEN', token)
