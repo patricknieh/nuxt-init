@@ -1,5 +1,6 @@
+const webpack = require('webpack')
 const { resolve } = require('path')
-const {API_HOST} = require('config')
+const {API_HOST} = require('./config')
 
 console.log('env: %o',process.env.__ENV)
 module.exports = {
@@ -109,11 +110,11 @@ module.exports = {
         }
       }
     },
-    postcss: [
+    // postcss: [
       // require('postcss-px2rem')({
       //   remUnit: 15 // 转换基本单位
       // })
-    ],
+    // ],
     plugins: [
       new webpack.ProvidePlugin({
         // '_': 'lodash'
