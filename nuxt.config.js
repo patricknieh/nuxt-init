@@ -81,6 +81,43 @@ module.exports = {
     theme_color: '#618cb9'
   },
   build: {
+    analyze: process.env.__ENV === 'development' ? true : false,
+    extractCSS: true,
+    cssSourceMap: false,
+    maxChunkSize: 100000,
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true
+          }
+        }
+      }
+    },
+    postcss: [
+      // require('postcss-px2rem')({
+      //   remUnit: 15 // 转换基本单位
+      // })
+    ],
+    plugins: [
+      new webpack.ProvidePlugin({
+        // '_': 'lodash'
+      })
+    ],
     extend (config, ctx) {
       const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
       svgRule.exclude = [resolve(__dirname, 'static/svg')]
