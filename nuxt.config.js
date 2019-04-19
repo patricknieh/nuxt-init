@@ -25,7 +25,6 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', href: '/icon.png' },
-      // { rel: 'stylesheet', href: '//unpkg.com/mint-ui/lib/style.css' },      //mint-ui
       // { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css' },      //sui
     ],
     script: [
@@ -76,7 +75,7 @@ module.exports = {
   proxy:{
     '/api/': { target: API_HOST, pathRewrite: {'^/api/': ''} }
   },
-  // watch: ['~/app.config.js'],
+  watch: ['~/config/index.js'],
   manifest: {
     name: 'nuxt-init',
     description: 'A pwa program',
