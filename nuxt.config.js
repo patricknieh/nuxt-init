@@ -62,7 +62,7 @@ module.exports = {
     // '~/plugins/vue-konva',
   ],
   css: [
-    '~/scss/main.scss'
+    '~/styles/main.scss'
   ],
   router: {
     middleware: ['route']
