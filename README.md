@@ -14,7 +14,8 @@ $ pm2 start npm --name <taskname> -- run start:<env>
 $ pm2 restart <taskname>
 
 # 静态部署
-$ yarn generate:<env>
+$ yarn build:<env>
+$ yarn generate
 $ docker-compose up -d
 ```
 
