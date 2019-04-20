@@ -10,8 +10,8 @@ $ yarn dev
 
 # 动态部署
 $ yarn build:<env>
-$ pm2 start npm --name <taskname> -- run start:<env>
-$ pm2 restart <taskname>
+$ pm2 start npm --n <taskname> -- run start:<env>
+$ pm2 restart/delete <taskname or id>
 
 # 静态部署
 $ yarn build:<env>
