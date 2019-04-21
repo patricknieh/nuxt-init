@@ -1,11 +1,10 @@
-//base
 @import "../scss/index";
-//custom
+
 @import "var";
 @import "common";
-//layout
+
 @import "layout/index";
-//page
 @import "pages/index";
-//components
 @import "components/index";
+
+@import "element/index";
