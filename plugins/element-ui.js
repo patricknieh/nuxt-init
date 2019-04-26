@@ -2,5 +2,6 @@ import Vue from 'vue'
 import ElementUI from 'element-ui'
 
 import 'element-ui/lib/theme-chalk/index.css';
+import 'web-base/dist/css/index.css'
 
 Vue.use(ElementUI)

@@ -1,6 +1,7 @@
-import netTool from '../tools/net'
 import Cookies from 'js-cookie'
 import request from 'superagent'
+import {utils} from "web-base"
+
 
 const {API_HOST,TOKEN_NAME} = require('../config')
 const queryString = require('query-string')
@@ -31,7 +32,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ dispatch, commit, getters, state }, { app, req, res }) {
     if (req.headers.cookie) {
-      let cookie = netTool.cookie.parse(req.headers.cookie)
+      let cookie = utils.net.cookie.parse(req.headers.cookie)
       console.log(cookie)
 
       let token = cookie[TOKEN_NAME]

@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import xlsxTool from '../tools/xlsx'
+  import {utils} from "web-base"
 
   export default {
     data() {
@@ -50,7 +50,7 @@
       handleChange(e) {
         const files = e.target.files
         if(files && files[0]) {
-          xlsxTool.read(files[0]).then(res => {
+          utils.xlsx.read(files[0]).then(res => {
             console.log(res)
             this.cols = res.cols
             this.data = res.data
@@ -58,7 +58,7 @@
         }
       },
       handleExport(){
-        xlsxTool.write(this.data,'test.xlsx')
+        utils.xlsx.write(this.data,'test.xlsx')
       }
     }
   };

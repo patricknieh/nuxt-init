@@ -17,10 +17,14 @@
 <script>
   import jsx from '~/components/jsx'
   import io from "socket.io-client"
+  import {utils} from "web-base"
 
   export default {
     components: {jsx},
     mounted(){
+      let arr = ['paddy','patrick','somebody']
+      console.log(utils.array.remove(arr,'somebody'))
+
       const log = console.log;
       const socket = io('http://localhost:7001', {
 

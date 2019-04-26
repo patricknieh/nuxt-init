@@ -9242,6 +9242,13 @@ watchpack@^1.5.0:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
 
+web-base@^1.1.16:
+  version "1.1.16"
+  resolved "https://registry.npmjs.org/web-base/-/web-base-1.1.16.tgz#9f62eca4223ce4995299ff606ee8304a6e465bc3"
+  integrity sha512-GVYXAWvW9um/M3ihHVNTwxxErtcpSXbb4HIqWYKwdtqFcJsWUNIdvpUoNWzN2+qJA1FoUpaGAHeWOFIm/Ajcwg==
+  dependencies:
+    xlsx "^0.14.2"
+
 webpack-bundle-analyzer@^3.0.3:
   version "3.0.3"
   resolved "http://registry.npm.taobao.org/webpack-bundle-analyzer/download/webpack-bundle-analyzer-3.0.3.tgz#dbc7fff8f52058b6714a20fddf309d0790e3e0a0"
