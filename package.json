@@ -39,7 +39,7 @@
     "vue-i18n": "^8.1.0",
     "vue-konva": "^2.0.0",
     "vue-quill-editor": "^3.0.6",
-    "web-base": "^1.1.16",
+    "web-base": "^1.2.1",
     "xlsx": "^0.14.2"
   },
   "devDependencies": {

@@ -12,12 +12,17 @@
       </li>
     </ul>
     <div>{{left}} item(s) is unfinished!</div>
+    <div class="flex-row-sb">
+      <div>left</div>
+      <div>middle</div>
+      <div>right</div>
+    </div>
   </div>
 </template>
 <script>
   import jsx from '~/components/jsx'
   import io from "socket.io-client"
-  import {utils} from "web-base"
+  import utils from "web-base"
 
   export default {
     components: {jsx},

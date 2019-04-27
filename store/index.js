@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import request from 'superagent'
-import {utils} from "web-base"
+import utils from "web-base"
 
 
 const {API_HOST,TOKEN_NAME} = require('../config')

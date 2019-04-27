@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import {utils} from "web-base"
+  import utils from "web-base"
 
   export default {
     data() {

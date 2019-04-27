@@ -2597,6 +2597,11 @@ component-emitter@1.2.1, component-emitter@^1.2.1:
   resolved "http://registry.npm.taobao.org/component-emitter/download/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
   integrity sha1-E3kY1teCg/ffemt8WmPhQOaUJeY=
 
+component-emitter@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
+  integrity sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
+
 component-indexof@0.0.3:
   version "0.0.3"
   resolved "http://registry.npm.taobao.org/component-indexof/download/component-indexof-0.0.3.tgz#11d091312239eb8f32c8f25ae9cb002ffe8d3c24"
@@ -5618,7 +5623,7 @@ mime@^2.0.3, mime@^2.3.1:
   resolved "http://registry.npm.taobao.org/mime/download/mime-2.4.0.tgz#e051fd881358585f3279df333fe694da0bcffdd6"
   integrity sha1-4FH9iBNYWF8yed8zP+aU2gvP/dY=
 
-mime@^2.4.0:
+mime@^2.4.0, mime@^2.4.2:
   version "2.4.2"
   resolved "http://registry.npm.taobao.org/mime/download/mime-2.4.2.tgz#ce5229a5e99ffc313abac806b482c10e7ba6ac78"
   integrity sha1-zlIppemf/DE6usgGtILBDnumrHg=
@@ -7510,7 +7515,7 @@ readable-stream@^3.0.6:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
-readable-stream@^3.2.0:
+readable-stream@^3.2.0, readable-stream@^3.3.0:
   version "3.3.0"
   resolved "http://registry.npm.taobao.org/readable-stream/download/readable-stream-3.3.0.tgz#cb8011aad002eb717bf040291feba8569c986fb9"
   integrity sha1-y4ARqtAC63F78EApH+uoVpyYb7k=
@@ -8491,6 +8496,22 @@ superagent@^5.0.2:
     readable-stream "^3.2.0"
     semver "^6.0.0"
 
+superagent@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.npmjs.org/superagent/-/superagent-5.0.3.tgz#567aea208584bdf25c4a3eca9207148b3d31517a"
+  integrity sha512-nfVXgiRy3fS6TFsjDKIUXV4q6fAnQE51U5BfKS4W9lwTqwLa7OxGyfyXdnXYLVPr7B2z4ZmbWrmJr/yYKS7s0A==
+  dependencies:
+    component-emitter "^1.3.0"
+    cookiejar "^2.1.2"
+    debug "^4.1.1"
+    form-data "^2.3.3"
+    formidable "^1.2.1"
+    methods "^1.1.2"
+    mime "^2.4.2"
+    qs "^6.7.0"
+    readable-stream "^3.3.0"
+    semver "^6.0.0"
+
 supports-color@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/supports-color/download/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
@@ -9242,11 +9263,13 @@ watchpack@^1.5.0:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
 
-web-base@^1.1.16:
-  version "1.1.16"
-  resolved "https://registry.npmjs.org/web-base/-/web-base-1.1.16.tgz#9f62eca4223ce4995299ff606ee8304a6e465bc3"
-  integrity sha512-GVYXAWvW9um/M3ihHVNTwxxErtcpSXbb4HIqWYKwdtqFcJsWUNIdvpUoNWzN2+qJA1FoUpaGAHeWOFIm/Ajcwg==
+web-base@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.org/web-base/-/web-base-1.2.1.tgz#b7a14cdf66db4009c650a74c2c0ba23c365f04eb"
+  integrity sha512-h8tZxpVQk263H6qY6plKxUnIvvaa8usU2vYr1v9AAoUOlRAFJ+1VNzrL0OK4GeXkiKbsJON/HXGHYpXJEbxkKg==
   dependencies:
+    js-cookie "^2.2.0"
+    superagent "^5.0.3"
     xlsx "^0.14.2"
 
 webpack-bundle-analyzer@^3.0.3:
