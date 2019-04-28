@@ -22,56 +22,14 @@
 <script>
   import jsx from '~/components/jsx'
   import io from "socket.io-client"
-  import utils from "web-base"
+  import {array as arrUtil, _ } from "web-base"
 
   export default {
     components: {jsx},
     mounted(){
-      let arr = ['paddy','patrick','somebody']
-      console.log(utils.array.remove(arr,'somebody'))
-
-      const log = console.log;
-      const socket = io('http://localhost:7001', {
-
-        // 实际使用中可以在这里传递参数
-        query: {
-          room: 'demo',
-          userId: `client_${Math.random()}`,
-        },
-
-        transports: ['websocket']
-      });
-
-      socket.on('connect', () => {
-        const id = socket.id;
-
-        log('#connect,', id, socket);
-
-        // 监听自身 id 以实现 p2p 通讯
-        socket.on(id, msg => {
-          log('#receive,', msg);
-        });
-      });
-
-      // 接收在线用户信息
-      socket.on('online', msg => {
-        log('#online,', msg);
-      });
-
-      // 系统事件
-      socket.on('disconnect', msg => {
-        log('#disconnect', msg);
-      });
-
-      socket.on('disconnecting', () => {
-        log('#disconnecting');
-      });
-
-      socket.on('error', () => {
-        log('#error');
-      });
-
-      window.socket = socket
+      let arr = ['paddy','patrick','somebody','paddyzzz']
+      console.log(arrUtil.remove(arr,'somebody'))
+      console.log('lodash',_.chunk(arr,2))
     },
     data() {
       return {
@@ -101,8 +59,50 @@
           finished: false
         })
         this.inputValue = ''
+      },
+      connSocket() {
+        const log = console.log;
+        const socket = io('http://localhost:7001', {
 
+          // 实际使用中可以在这里传递参数
+          query: {
+            room: 'demo',
+            userId: `client_${Math.random()}`,
+          },
 
+          transports: ['websocket']
+        });
+
+        socket.on('connect', () => {
+          const id = socket.id;
+
+          log('#connect,', id, socket);
+
+          // 监听自身 id 以实现 p2p 通讯
+          socket.on(id, msg => {
+            log('#receive,', msg);
+          });
+        });
+
+        // 接收在线用户信息
+        socket.on('online', msg => {
+          log('#online,', msg);
+        });
+
+        // 系统事件
+        socket.on('disconnect', msg => {
+          log('#disconnect', msg);
+        });
+
+        socket.on('disconnecting', () => {
+          log('#disconnecting');
+        });
+
+        socket.on('error', () => {
+          log('#error');
+        });
+
+        window.socket = socket
       }
     }
   };
