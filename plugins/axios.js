@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-var vm = new Vue({})    //获取vue实例
+const vm = new Vue({})    //获取vue实例
 
 export default function ({ $axios, redirect }) {
   if(process.browser){

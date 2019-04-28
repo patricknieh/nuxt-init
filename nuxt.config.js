@@ -25,40 +25,23 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'apple-touch-icon', href: '/icon.png' },
-      // { rel: 'stylesheet', href: '//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css' },      //sui
     ],
     script: [
-      // { src: '//g.alicdn.com/sj/lib/zepto/zepto.min.js'},       //zepto
-      // { src: '//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js'},      //sui
-      // { src: 'https://s19.cnzz.com/z_stat.php?id=1262375830&web_id=1262375830',language:'JavaScript'},   //change cnzz id
+      // { src: 'https://s19.cnzz.com/z_stat.php?id=1262375830&web_id=1262375830',language:'JavaScript'},   //cnzz
       // { src: '/js/snap.svg-min.js'},      //snap
       // { src: '/js/gt.js'}      //极验
     ]
   },
-  // mode: 'spa',
-  // loadingIndicator: {
-  //   name: 'circle',
-  //   color: '#3B8070',
-  //   background: 'white'
-  // },
-  modules: ['@nuxtjs/axios','@nuxtjs/pwa'],
+  modules: ['@nuxtjs/axios'],
   plugins: [
-    {
-      src: "~/plugins/axios",
-      ssr: false
-    },
+    {src: "~/plugins/axios", ssr: false},
     '~/plugins/i18n',
-    // '~/plugins/ant-design-vue',
     '~/plugins/element-ui',
-    // '~/plugins/mint-ui',
     '~/plugins/components',
     '~/plugins/svg-icon',
     '~/plugins/filters',
     '~/plugins/mixins',
     '~/plugins/directives',
-    // '~/plugins/vue-quill-editor',
-    // '~/plugins/vue-awesome-swiper',
-    // '~/plugins/vue-konva',
   ],
   css: [
     '~/styles/main.scss'
@@ -67,9 +50,7 @@ module.exports = {
     middleware: ['route']
   },
   axios: {
-    // baseURL: ``,
-    // credentials: true,
-    proxy:true,   //调用第三方api解决跨域问题
+    proxy:true,
     debug: process.env.__ENV === 'development' ? true : false
   },
   proxy:{
