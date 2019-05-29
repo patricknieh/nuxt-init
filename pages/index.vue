@@ -22,7 +22,8 @@
 <script>
   import jsx from '~/components/jsx'
   import io from "socket.io-client"
-  import {array as arrUtil, _ } from "web-base"
+  import {array as arrUtil} from "web-base"
+  import _ from "web-base/lodash"
 
   export default {
     components: {jsx},
@@ -46,12 +47,12 @@
     methods: {
       handleSubmit() {
         //socket
-        window.socket.emit('exchange', {
-          target: '1UyxVUodyUUFGnoCAAAA',  //TODO change target id
-          payload: {
-            msg : this.inputValue,
-          },
-        });
+        // window.socket.emit('exchange', {
+        //   target: '1UyxVUodyUUFGnoCAAAA',  //TODO change target id
+        //   payload: {
+        //     msg : this.inputValue,
+        //   },
+        // });
 
         this.todos.unshift({
           id: Math.random(),
